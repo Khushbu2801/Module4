@@ -155,34 +155,10 @@ output application/json
         </ee:transform>
     </flow>
     <flow name="get:\flights:American-flight-api-2-config">
-		<flow-ref doc:name="americanFlightFlow" doc:id="c04f8c0b-0331-47fb-b8e5-2999d4ed3a83" name="americanFlightFlow"/>
+		<flow-ref doc:name="getFlights" doc:id="c04f8c0b-0331-47fb-b8e5-2999d4ed3a83" name="getFlights"/>
     </flow>
     <flow name="get:\flights\(ID):American-flight-api-2-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="ID">attributes.uriParams.'ID'</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  ID: 1,
-  code: "ER38sd",
-  price: 400,
-  departureDate: "2017/07/26",
-  origin: "CLE",
-  destination: "SFO",
-  emptySeats: 0,
-  plane: {
-    "type": "Boeing 737",
-    totalSeats: 150
-  }
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+		<flow-ref doc:name="getFlightsByID" doc:id="f8e74fd4-ad1a-4aa5-8907-dec86c9b200c" name="getFlightsByID"/>
     </flow>
     <flow name="post:\flights:application\json:American-flight-api-2-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">

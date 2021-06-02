@@ -12,11 +12,9 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="36572450-6c00-4fd5-8a2b-2cdb22724aa7" >
 		<db:my-sql-connection host="iltdb.learn.mulesoft.com" port="3306" user="mule" password="mule" database="training" />
 	</db:config>
-	<flow name="americanFlightFlow" doc:id="b71d832e-1a0f-4b3b-9801-826296e4d9d1" >
-		<http:listener doc:name="Listener" doc:id="a50cc447-eefc-45df-8ee5-76ce3a046bfa" config-ref="HTTP_Listener_config" path="/flights"/>
+	<flow name="getFlights" doc:id="b71d832e-1a0f-4b3b-9801-826296e4d9d1" >
 		<db:select doc:name="Select" doc:id="3a7286cf-490d-4aa4-a880-eae0a1f1e183" config-ref="Database_Config">
 			<db:sql ><![CDATA[SELECT * FROM american]]></db:sql>
-			<db:input-parameters ><![CDATA[#[{'ID' : attributes.uriParams.ID}]]]></db:input-parameters>
 		</db:select>
 		<ee:transform doc:name="Transform Message" doc:id="9c897f15-ee34-424c-b786-79f61609d1bf" >
 			<ee:message >
@@ -39,14 +37,12 @@ payload map ( payload01 , indexOfPayload01 ) -> {
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="PostFlight" doc:id="e81fdcca-ea84-4ba8-a879-f0c1525926cd" >
-		<http:listener doc:name="Listener" doc:id="cf4d4708-388c-4d21-8bd4-b578d0daf9ba" config-ref="HTTP_Listener_config" path="post/flights"/>
-		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="e0ab1de2-2ef4-4a06-be95-e986cf785e4b" />
+	<flow name="postFlight" doc:id="e81fdcca-ea84-4ba8-a879-f0c1525926cd" >
+		<set-payload value='{"message" : Flight added(but not really)}' doc:name="Set Payload" doc:id="e0ab1de2-2ef4-4a06-be95-e986cf785e4b" />
 	</flow>
-	<flow name="GetFlightsByID" doc:id="f2697e40-9e90-4d59-a792-52d83e5bafec" >
-		<http:listener doc:name="Copy_of_Listener" doc:id="381909bc-d93f-44a3-b78a-e9881acdf005" config-ref="HTTP_Listener_config" path="/flights" allowedMethods="GET"/>
+	<flow name="getFlightsByID" doc:id="f2697e40-9e90-4d59-a792-52d83e5bafec" >
 		<db:select doc:name="Copy_of_Select" doc:id="4a025f62-341f-4377-b50a-3959c1080b9c" config-ref="Database_Config" >
-			<db:sql ><![CDATA[SELECT * FROM american]]></db:sql>
+			<db:sql ><![CDATA[SELECT * FROM american WHERE ID =:ID]]></db:sql>
 			<db:input-parameters ><![CDATA[#[{'ID' : attributes.uriParams.ID}]]]></db:input-parameters>
 		</db:select>
 		<ee:transform doc:name="Copy_of_Transform Message" doc:id="4c69b966-9e22-43bf-8fc0-5fd4f7f9fa01" >
