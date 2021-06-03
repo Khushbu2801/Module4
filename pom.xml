@@ -82,16 +82,16 @@
 		</dependency>
 		<dependency>
 			<groupId>6bc3d740-1d4a-4b93-a5c2-3af100c238ef</groupId>
+			<artifactId>mule-plugin-indian-flight-api</artifactId>
+			<version>1.0.2</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>6bc3d740-1d4a-4b93-a5c2-3af100c238ef</groupId>
 			<artifactId>indian-flight-api</artifactId>
 			<version>1.0.2</version>
 			<classifier>raml</classifier>
 			<type>zip</type>
-		</dependency>
-		<dependency>
-			<groupId>6bc3d740-1d4a-4b93-a5c2-3af100c238ef</groupId>
-			<artifactId>mule-plugin-indian-flight-api</artifactId>
-			<version>1.0.2</version>
-			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
 

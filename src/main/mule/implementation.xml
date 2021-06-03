@@ -36,6 +36,7 @@ payload map ( payload01 , indexOfPayload01 ) -> {
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="97fd63e9-ba22-4747-9f65-f3ef85545efd" />
 	</flow>
 	<flow name="postFlight" doc:id="e81fdcca-ea84-4ba8-a879-f0c1525926cd" >
 		<set-payload value='{"message" : Flight added(but not really)}' doc:name="Set Payload" doc:id="e0ab1de2-2ef4-4a06-be95-e986cf785e4b" />
